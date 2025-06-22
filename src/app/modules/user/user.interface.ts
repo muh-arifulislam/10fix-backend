@@ -5,6 +5,9 @@ export interface IUser {
   email: string;
   role: TUserRole;
   status: 'active' | 'disabled';
+  password?: string | null;
+  authType: 'gmail' | 'email-password';
+  fullName: string;
 }
 
 export interface UserModel extends Model<IUser> {

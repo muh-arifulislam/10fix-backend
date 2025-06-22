@@ -4,7 +4,7 @@ import { TCustomerMessage } from './message.interface';
 const sendEmailFromCustomer = async (payload: TCustomerMessage) => {
   console.log(payload);
   await sendEmail({
-    to: 'info@10fix.com.bd',
+    to: 'arifibnenam@gmail.com',
     subject: 'Message From Customer!!',
     template: 'welcomeMessage',
     context: {

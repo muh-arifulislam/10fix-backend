@@ -44,7 +44,7 @@ const addOrderIntoDB = async (payload: IPayload) => {
       },
     );
 
-    await emailHelper.sendConfirmationdEmail(order, customer);
+    await emailHelper.sendConfirmationEmail(order, customer);
 
     return order;
   } else {
@@ -65,7 +65,7 @@ const addOrderIntoDB = async (payload: IPayload) => {
     customer.orders = [order._id];
     await customer.save();
 
-    await emailHelper.sendConfirmationdEmail(order, customer);
+    await emailHelper.sendConfirmationEmail(order, customer);
 
     return order;
   }
@@ -79,9 +79,25 @@ const softDeleteOrderFromDB = async (id: string) => {
     throw new AppError(httpStatus.NOT_FOUND, 'Order not found');
   }
 
+  if (order.isDeleted) {
+    throw new AppError(httpStatus.BAD_REQUEST, 'Order is already deleted');
+  }
+
+  if (
+    order.status === ORDER_STATUS.completed ||
+    order.status === ORDER_STATUS.received
+  ) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      'You cannot delete an order that is already completed or received',
+    );
+  }
+
   order.deletedAt = new Date().toString();
   order.isDeleted = true;
   await order.save();
+
+  return null;
 };
 
 const updateOrderStatusIntoDB = async (orderId: string) => {

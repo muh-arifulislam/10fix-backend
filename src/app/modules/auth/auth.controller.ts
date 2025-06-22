@@ -3,12 +3,24 @@ import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { AuthServices } from './auth.service';
 
-const loginUser = catchAsync(async (req, res) => {
-  const token = await AuthServices.loginUser(req.body);
+const loginUserWithGmail = catchAsync(async (req, res) => {
+  const token = await AuthServices.loginUserWithGmail(req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User is logged in succesfully!',
+    message: 'User is logged in successful!',
+    data: {
+      accessToken: token,
+    },
+  });
+});
+
+const loginUserWithEmailPassword = catchAsync(async (req, res) => {
+  const token = await AuthServices.loginUserWithEmailPassword(req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User is logged in successful!',
     data: {
       accessToken: token,
     },
@@ -16,5 +28,6 @@ const loginUser = catchAsync(async (req, res) => {
 });
 
 export const AuthControllers = {
-  loginUser,
+  loginUserWithGmail,
+  loginUserWithEmailPassword,
 };

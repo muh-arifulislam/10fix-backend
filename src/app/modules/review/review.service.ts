@@ -23,7 +23,7 @@ const getAllReviewsFromDB = async (options: IPaginationOptions) => {
 
   //Handle sorting
   const sortBy = options.sortBy ?? 'createdAt';
-  const sortOrder = (options.sortOrder as 'asc' | 'desc') ?? 'asc';
+  const sortOrder = (options.sortOrder as 'asc' | 'desc') ?? 'desc';
   query.sort({
     [sortBy]: sortOrder,
   });

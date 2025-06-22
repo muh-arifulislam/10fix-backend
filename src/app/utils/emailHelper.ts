@@ -6,7 +6,7 @@ import { IOrder } from '../modules/order/order.interface';
 import { ICustomer } from '../modules/customer/customer.interface';
 import moment from 'moment';
 
-const sendConfirmationdEmail = async (order: IOrder, customer: ICustomer) => {
+const sendConfirmationEmail = async (order: IOrder, customer: ICustomer) => {
   const context = {
     fullName: `${customer.fullName.firstName} ${customer.fullName.lastName}`,
     orderId: order.orderId,
@@ -20,9 +20,7 @@ const sendConfirmationdEmail = async (order: IOrder, customer: ICustomer) => {
     randomness: Date.now(),
   };
   const transporter = nodemailer.createTransport({
-    host: 'mail.10fix.com.bd',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
       user: config.email_user,
       pass: config.email_password,
@@ -55,6 +53,7 @@ const sendConfirmationdEmail = async (order: IOrder, customer: ICustomer) => {
 
   await transporter.sendMail(mailOptions);
 };
+
 const sendReceivedEmail = async (order: IOrder, customer: ICustomer) => {
   const context = {
     fullName: `${customer.fullName.firstName} ${customer.fullName.lastName}`,
@@ -66,9 +65,7 @@ const sendReceivedEmail = async (order: IOrder, customer: ICustomer) => {
     randomness: Date.now(),
   };
   const transporter = nodemailer.createTransport({
-    host: 'mail.10fix.com.bd',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
       user: config.email_user,
       pass: config.email_password,
@@ -115,9 +112,7 @@ const sendCompletedEmail = async (order: IOrder, customer: ICustomer) => {
     randomness: Date.now(),
   };
   const transporter = nodemailer.createTransport({
-    host: 'mail.10fix.com.bd',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
       user: config.email_user,
       pass: config.email_password,
@@ -152,7 +147,7 @@ const sendCompletedEmail = async (order: IOrder, customer: ICustomer) => {
 };
 
 export const emailHelper = {
-  sendConfirmationdEmail,
+  sendConfirmationEmail,
   sendReceivedEmail,
   sendCompletedEmail,
 };

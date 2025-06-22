@@ -15,9 +15,7 @@ export const sendEmail = async ({
   context: Record<string, unknown>;
 }) => {
   const transporter = nodemailer.createTransport({
-    host: 'mail.10fix.com.bd',
-    port: 465,
-    secure: true,
+    service: 'gmail',
     auth: {
       user: config.email_user,
       pass: config.email_password,

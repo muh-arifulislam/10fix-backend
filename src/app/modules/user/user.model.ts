@@ -8,7 +8,18 @@ const userSchema = new Schema<IUser, UserModel>(
       unique: true,
       required: true,
     },
-
+    password: {
+      type: String,
+    },
+    fullName: {
+      type: String,
+      required: true,
+    },
+    authType: {
+      type: String,
+      enum: ['gmail', 'email-password'],
+      required: true,
+    },
     role: {
       type: String,
       enum: ['admin', 'moderate', 'superAdmin'],

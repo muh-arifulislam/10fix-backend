@@ -15,7 +15,6 @@ const addOrder = catchAsync(async (req, res) => {
 
 const softDeleteOrder = catchAsync(async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   await OrderServices.softDeleteOrderFromDB(id);
   sendResponse(res, {
     statusCode: httpStatus.OK,

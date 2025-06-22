@@ -6,9 +6,15 @@ import { AuthValidation } from './auth.validation';
 const router = Router();
 
 router.post(
+  '/login-with-gmail',
+  validateRequest(AuthValidation.loginWithGmailValidationSchema),
+  AuthControllers.loginUserWithGmail,
+);
+
+router.post(
   '/login',
-  validateRequest(AuthValidation.loginValidationSchema),
-  AuthControllers.loginUser,
+  validateRequest(AuthValidation.loginWithEmailPasswordValidationSchema),
+  AuthControllers.loginUserWithEmailPassword,
 );
 
 export const AuthRoutes = router;
