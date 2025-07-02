@@ -1,9 +1,8 @@
-# Backend for - Taasu Soap Website
-A modern, responsive portfolio website built with a React.js (TypeScript) frontend and Express.js (TypeScript) backend, showcasing my skills, projects, and blog posts.
+# Backend for - 10Fix
 
 ## Live Demo
 
-- Backend API: [https://taasu-soap-backend.vercel.app/](https://taasu-soap-backend.vercel.app/)
+- Backend API: [https://10fix.vercel.app/]([https://taasu-soap-backend.vercel.app/](https://10fix.vercel.app/)
 
 <!-- Navigation Tags -->
 
